@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:todoey/widgets/tasks_view.dart';
+import 'package:todoey/constants.dart';
 
 class TasksScreen extends StatelessWidget {
   const TasksScreen({Key? key}) : super(key: key);
@@ -7,13 +9,18 @@ class TasksScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.lightBlueAccent,
+        onPressed: () {},
+        child: Icon(Icons.add),
+      ),
       body: SafeArea(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 40.0, vertical: 40.0),
+            padding: const EdgeInsets.only(
+                top: 60.0, left: 40.0, right: 40.0, bottom: 40.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const <Widget>[
@@ -29,73 +36,24 @@ class TasksScreen extends StatelessWidget {
                 SizedBox(height: 20.0),
                 Text(
                   'Todoey',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: kBigTitleTextStyle,
+                ),
+                Text(
+                  '12 tasks',
+                  style: kSmallTitleTextStyle,
                 ),
               ],
             ),
           ),
           Expanded(
             child: Container(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(40.0),
-                  topLeft: Radius.circular(40.0),
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  children: [
-                    TaskTile(
-                      taskTitle: 'Task 1: Clean the kitchen',
-                    ),
-                    TaskTile(
-                      taskTitle: 'Task 2: Mow the lawn',
-                    ),
-                    TaskTile(
-                      taskTitle: 'Task 3: Do the dishes',
-                    ),
-                  ],
-                ),
-              ),
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              decoration: kBottomContainerDecoration,
+              child: TaskView(),
             ),
           ),
         ],
       )),
-    );
-  }
-}
-
-class TaskTile extends StatefulWidget {
-  final String taskTitle;
-
-  const TaskTile({
-    Key? key,
-    required this.taskTitle,
-  }) : super(key: key);
-
-  @override
-  State<TaskTile> createState() => _TaskTileState();
-}
-
-class _TaskTileState extends State<TaskTile> {
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(widget.taskTitle),
-      trailing: Checkbox(
-        value: false,
-        onChanged: ((bool? newValue) {
-          setState(() {
-            print(newValue);
-          });
-        }),
-      ),
     );
   }
 }
