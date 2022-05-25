@@ -18,3 +18,11 @@ const kBigTitleTextStyle = TextStyle(
   fontSize: 40,
   fontWeight: FontWeight.w700,
 );
+
+const kAddTaskScreenDecoration = BoxDecoration(
+  color: Colors.white,
+  borderRadius: BorderRadius.only(
+    topLeft: Radius.circular(20),
+    topRight: Radius.circular(20),
+  ),
+);

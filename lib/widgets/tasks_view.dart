@@ -5,6 +5,7 @@ class TaskView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      padding: EdgeInsets.only(top: 15.0),
       children: const [
         TaskTile(
           taskTitle: 'Task 1: Clean the kitchen',
