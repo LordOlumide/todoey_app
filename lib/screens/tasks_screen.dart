@@ -1,28 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:todoey/widgets/tasks_view.dart';
 import 'package:todoey/constants.dart';
+import 'package:todoey/models/task.dart';
 import 'add_task_screen.dart';
 
-class TasksScreen extends StatelessWidget {
-  const TasksScreen({Key? key}) : super(key: key);
+class TasksScreen extends StatefulWidget {
+  TasksScreen({Key? key}) : super(key: key);
+
+  @override
+  State<TasksScreen> createState() => _TasksScreenState();
+}
+class _TasksScreenState extends State<TasksScreen> {
+
+  List<Task> baseTaskList = [
+    Task(title: 'Buy weed'),
+    Task(title: 'Buy booze'),
+    Task(title: 'Do good'),
+  ];
+
+  void addTask(newTask) {
+    setState(() {
+      baseTaskList.add(Task(title: newTask));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.lightBlueAccent,
         onPressed: () {
           showModalBottomSheet(
-              context: context,
-              isScrollControlled: true,
-              builder: (context) => SingleChildScrollView(
-                    child: Container(
-                      padding: EdgeInsets.only(
-                          bottom: MediaQuery.of(context).viewInsets.bottom),
-                      child: AddTaskScreen(),
-                    ),
-                  ));
+            context: context,
+            isScrollControlled: true,
+            builder: (context) => SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
+                child: AddTaskScreen(addNewTask: addTask),
+              ),
+            ),
+          );
         },
         child: Icon(Icons.add),
       ),
@@ -61,7 +81,7 @@ class TasksScreen extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
               decoration: kBottomContainerDecoration,
-              child: TaskView(),
+              child: TaskView(baseTaskList: baseTaskList),
             ),
           ),
         ],

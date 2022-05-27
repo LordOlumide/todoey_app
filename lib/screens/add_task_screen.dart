@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:todoey/constants.dart';
+import 'package:todoey/screens/tasks_screen.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  const AddTaskScreen({Key? key}) : super(key: key);
+  final Function addNewTask;
+
+  const AddTaskScreen({Key? key, required this.addNewTask}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    String newTask = '';
+
     return Container(
       color: Color(0xFF757575),
       child: Container(
@@ -26,6 +31,10 @@ class AddTaskScreen extends StatelessWidget {
             TextField(
               autofocus: true,
               textAlign: TextAlign.center,
+              textCapitalization: TextCapitalization.sentences,
+              onChanged: (value) {
+                newTask = value;
+              },
             ),
             const SizedBox(height: 10),
             ElevatedButton(
@@ -34,7 +43,10 @@ class AddTaskScreen extends StatelessWidget {
                     MaterialStateProperty.all<Color>(Colors.lightBlueAccent),
               ),
               onPressed: () {
-
+                if (newTask != '') {
+                  addNewTask(newTask);
+                }
+                Navigator.pop(context);
               },
               child: const Text(
                 'Add',
