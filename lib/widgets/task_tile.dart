@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class TaskTile extends StatelessWidget {
-  bool isChecked;
+  final bool isChecked;
   final String taskTitle;
   final Function toggle;
 
-  TaskTile({
+  const TaskTile({
     required this.isChecked,
     required this.taskTitle,
     required this.toggle,

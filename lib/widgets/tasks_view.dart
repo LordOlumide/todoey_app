@@ -3,9 +3,9 @@ import 'task_tile.dart';
 import 'package:todoey/models/task.dart';
 
 class TaskView extends StatefulWidget {
-  List<Task> baseTaskList;
+  final List<Task> baseTaskList;
 
-  TaskView({required this.baseTaskList});
+  const TaskView({required this.baseTaskList});
 
   @override
   State<TaskView> createState() => _TaskViewState();

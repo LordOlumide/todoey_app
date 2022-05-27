@@ -5,16 +5,16 @@ import 'package:todoey/models/task.dart';
 import 'add_task_screen.dart';
 
 class TasksScreen extends StatefulWidget {
-  TasksScreen({Key? key}) : super(key: key);
+  const TasksScreen({Key? key}) : super(key: key);
 
   @override
   State<TasksScreen> createState() => _TasksScreenState();
 }
-class _TasksScreenState extends State<TasksScreen> {
 
-  List<Task> baseTaskList = [
-    Task(title: 'Buy weed'),
-    Task(title: 'Buy booze'),
+class _TasksScreenState extends State<TasksScreen> {
+  final List<Task> baseTaskList = [
+    Task(title: 'Eat food'),
+    Task(title: 'Get babes'),
     Task(title: 'Do good'),
   ];
 
@@ -26,7 +26,6 @@ class _TasksScreenState extends State<TasksScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       floatingActionButton: FloatingActionButton(
@@ -44,7 +43,7 @@ class _TasksScreenState extends State<TasksScreen> {
             ),
           );
         },
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
       body: SafeArea(
           child: Column(
@@ -55,8 +54,8 @@ class _TasksScreenState extends State<TasksScreen> {
                 top: 60.0, left: 40.0, right: 40.0, bottom: 40.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const <Widget>[
-                CircleAvatar(
+              children: <Widget>[
+                const CircleAvatar(
                   backgroundColor: Colors.white,
                   radius: 30.0,
                   child: Icon(
@@ -65,13 +64,13 @@ class _TasksScreenState extends State<TasksScreen> {
                     color: Colors.lightBlueAccent,
                   ),
                 ),
-                SizedBox(height: 20.0),
-                Text(
+                const SizedBox(height: 20.0),
+                const Text(
                   'Todoey',
                   style: kBigTitleTextStyle,
                 ),
                 Text(
-                  '12 tasks',
+                  '${baseTaskList.length} tasks',
                   style: kSmallTitleTextStyle,
                 ),
               ],
@@ -79,7 +78,7 @@ class _TasksScreenState extends State<TasksScreen> {
           ),
           Expanded(
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
               decoration: kBottomContainerDecoration,
               child: TaskView(baseTaskList: baseTaskList),
             ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:todoey/constants.dart';
-import 'package:todoey/screens/tasks_screen.dart';
 
 class AddTaskScreen extends StatelessWidget {
   final Function addNewTask;
@@ -12,9 +11,9 @@ class AddTaskScreen extends StatelessWidget {
     String newTask = '';
 
     return Container(
-      color: Color(0xFF757575),
+      color: const Color(0xFF757575),
       child: Container(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         decoration: kAddTaskScreenDecoration,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
