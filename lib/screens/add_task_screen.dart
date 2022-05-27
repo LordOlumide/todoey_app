@@ -29,11 +29,13 @@ class AddTaskScreen extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             ElevatedButton(
-              onPressed: () {},
               style: ButtonStyle(
                 backgroundColor:
                     MaterialStateProperty.all<Color>(Colors.lightBlueAccent),
               ),
+              onPressed: () {
+
+              },
               child: const Text(
                 'Add',
                 style: TextStyle(color: Colors.white),
