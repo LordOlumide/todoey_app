@@ -18,7 +18,7 @@ class TaskView extends StatelessWidget {
               taskTitle: task.title,
               isChecked: task.isDone,
               toggleCallback: () {
-                taskObject.toggleTaskState(task);
+                taskObject.toggleTaskState(index);
               },
               longPressCallback: () {
                 taskObject.removeTask(task);

@@ -10,18 +10,31 @@ void main() {
     DeviceOrientation.portraitUp,
   ]);
 
-  //TODO: How to persist the state.
-
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyApp extends StatefulWidget {
+  MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late TaskListObject taskListObject;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    taskListObject = TaskListObject();
+    taskListObject.initialize();
+  }
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<TaskListObject>(
-      create: (context) => TaskListObject(),
+      create: (context) => taskListObject,
       child: MaterialApp(
         home: TasksScreen(),
       ),
