@@ -5,7 +5,6 @@ import 'package:todoey/models/task.dart';
 import 'package:provider/provider.dart';
 
 class TaskView extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Consumer<TaskListObject>(builder: (context, taskObject, child) {
@@ -14,13 +13,16 @@ class TaskView extends StatelessWidget {
         padding: const EdgeInsets.only(top: 15.0),
         itemCount: taskObject.taskCount,
         itemBuilder: (context, index) {
+          Task task = tasks[index];
           return TaskTile(
-            taskTitle: tasks[index].title,
-            isChecked: tasks[index].isDone,
-            toggle: () {
-              taskObject.toggleTaskState(index);
-            },
-          );
+              taskTitle: task.title,
+              isChecked: task.isDone,
+              toggleCallback: () {
+                taskObject.toggleTaskState(task);
+              },
+              longPressCallback: () {
+                taskObject.removeTask(task);
+              });
         },
       );
     });

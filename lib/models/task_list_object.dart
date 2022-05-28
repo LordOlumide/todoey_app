@@ -17,13 +17,18 @@ class TaskListObject extends ChangeNotifier {
     return _baseTaskList.length;
   }
 
-  void toggleTaskState(int index) {
-    _baseTaskList[index].toggleTaskState();
+  void toggleTaskState(Task task) {
+    task.toggleTaskState();
     notifyListeners();
   }
 
   void addTask(String newTask) {
     _baseTaskList.add(Task(title: newTask));
+    notifyListeners();
+  }
+
+  void removeTask(task) {
+    _baseTaskList.remove(task);
     notifyListeners();
   }
 }
