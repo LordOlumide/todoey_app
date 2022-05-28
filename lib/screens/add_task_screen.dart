@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:todoey/constants.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey/models/task.dart';
+import 'package:todoey/main.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  final Function addNewTask;
-
-  const AddTaskScreen({Key? key, required this.addNewTask}) : super(key: key);
+  const AddTaskScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,8 @@ class AddTaskScreen extends StatelessWidget {
               ),
               onPressed: () {
                 if (newTask != '') {
-                  addNewTask(newTask);
+                  Provider.of<TaskListObject>(context, listen: false)
+                      .addTask(Task(title: newTask));
                 }
                 Navigator.pop(context);
               },

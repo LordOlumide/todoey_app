@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:todoey/main.dart';
 import 'task_tile.dart';
 import 'package:todoey/models/task.dart';
+import 'package:provider/provider.dart';
 
 class TaskView extends StatefulWidget {
-  final List<Task> baseTaskList;
-
-  const TaskView({required this.baseTaskList});
-
   @override
   State<TaskView> createState() => _TaskViewState();
 }
 
 class _TaskViewState extends State<TaskView> {
-
   @override
   Widget build(BuildContext context) {
-    List<Task> tasks = widget.baseTaskList;
+    List<Task> tasks = Provider.of<TaskListObject>(context).baseTaskList;
 
     return ListView.builder(
       padding: const EdgeInsets.only(top: 15.0),
